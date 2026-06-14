@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>환영합니다</title>
+    <meta charset="UTF-8">
+    <title>비밀번호</title>
     <style>
-        body { background-color: black; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-size: 24px; font-family: sans-serif; }
+        body { background-color: #1a1a1a; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        input { padding: 10px; font-size: 16px; border: none; border-radius: 5px; margin-bottom: 10px; text-align: center; }
+        button { padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #message { font-size: 26px; font-weight: bold; color: #ffeb3b; display: none; }
     </style>
 </head>
 <body>
-    여기까지 오셨군요. ㄷㄷ 이걸 보면 댓글창에 "~&^"라고 적어주세요. 우리만의 비밀 암호입니다.
+    <div id="login-box">
+        <input type="password" id="pw" placeholder="암호를 입력하세요">
+        <br>
+        <button onclick="checkPW()">확인</button>
+    </div>
+    <div id="message">와 ㄷㄷ 이걸 뚫네요. 나중에 더 많은걸 추가할거에요. 쨋든 이걸 보면 "^@&"라고 적어주세요. 우리만의 비밀 암호입니다</div>
+    <script>
+        function checkPW() {
+            const input = document.getElementById('pw').value;
+            if(input === "2452") { // 바꾸고 싶은 비밀번호로 변경 가능
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('message').style.style.display = 'block';
+            } else {
+                alert("일치하지 않습니다.");
+            }
+        }
+    </script>
 </body>
 </html>
+
