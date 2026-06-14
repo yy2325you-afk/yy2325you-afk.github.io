@@ -16,13 +16,13 @@
         <br>
         <button onclick="checkPW()">확인</button>
     </div>
-    <div id="message">와 ㄷㄷ 핵임?</div>
+    <div id="message">이걸?ㄷㄷ</div>
     <script>
         function checkPW() {
             const input = document.getElementById('pw').value;
-            if(input === "2452") { // 바꾸고 싶은 비밀번호로 변경 가능
+            if(input === "1234") { // 비밀번호를 바꾸고 싶다면 여기 "1234"를 고치세요
                 document.getElementById('login-box').style.display = 'none';
-                document.getElementById('message').style.style.display = 'block';
+                document.getElementById('message').style.display = 'block'; // 오타 수정 완료!
             } else {
                 alert("일치하지 않습니다.");
             }
@@ -30,4 +30,3 @@
     </script>
 </body>
 </html>
-
