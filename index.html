@@ -1,174 +1,77 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>My Website</title>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  height: 100vh;
-  overflow: hidden;
-  background: #05000f;
-  color: white;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* 배경 빛 */
-body::before {
-  content: "";
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #8a00ff55, transparent 70%);
-  animation: move 6s infinite alternate;
-}
-
-.container {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  animation: appear 1.5s ease;
-}
-
-h1 {
-  font-size: 80px;
-  letter-spacing: 8px;
-  color: #fff;
-  text-shadow:
-    0 0 10px #ff00ff,
-    0 0 30px #ff00ff,
-    0 0 60px #7700ff,
-    0 0 100px #00aaff;
-  animation: glow 2s infinite alternate;
-}
-
-p {
-  margin-top: 20px;
-  font-size: 22px;
-  letter-spacing: 4px;
-  color: #ddd;
-}
-
-button {
-  margin-top: 40px;
-  padding: 15px 45px;
-  font-size: 18px;
-  color: white;
-  background: transparent;
-  border: 2px solid #b000ff;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow:
-    0 0 10px #b000ff,
-    inset 0 0 10px #b000ff;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.15);
-  background: #b000ff33;
-  box-shadow:
-    0 0 20px #ff00ff,
-    0 0 60px #7700ff;
-}
-
-/* 파티클 */
-.particle {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #fff;
-  animation: float linear infinite;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes glow {
-  from {
-    text-shadow:
-      0 0 10px #ff00ff,
-      0 0 30px #7700ff;
-  }
-  to {
-    text-shadow:
-      0 0 20px #00ffff,
-      0 0 50px #0088ff,
-      0 0 100px #7700ff;
-  }
-}
-
-@keyframes move {
-  from {
-    transform: translate(-200px, -100px);
-  }
-  to {
-    transform: translate(200px, 100px);
-  }
-}
-
-@keyframes float {
-  from {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김채율 입력 중 프로그램</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f6fa;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+        }
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2f3640;
+            margin-bottom: 20px;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #353b48;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #718093;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
-  <h1>절대</h1>
-  <p>클릭하지 마시오 🔥</p>
-  <button onclick="alert('김희주 바보 ㅋㅋㅋ 박라임 바보 ㅋㅋㅋ 🔥')">
-    ENTER
-  </button>
+    <!-- 화면에 표시될 텍스트 영역 -->
+    <div id="result">김채율 님이 입력 중입니다...</div>
+    
+    <!-- 사람을 추가하는 버튼 -->
+    <button onclick="addPerson()">김채율 추가하기</button>
 </div>
 
 <script>
-for (let i = 0; i < 100; i++) {
-  const particle = document.createElement("div");
-  particle.className = "particle";
+    // 현재 김채율의 수 (기본 1명)
+    let count = 1;
 
-  particle.style.left = Math.random() * 100 + "vw";
-  particle.style.animationDuration =
-    (2 + Math.random() * 6) + "s";
-
-  particle.style.animationDelay =
-    Math.random() * 5 + "s";
-
-  particle.style.transform =
-    `scale(${Math.random() * 2})`;
-
-  document.body.appendChild(particle);
-}
+    function addPerson() {
+        count++; // 버튼을 누를 때마다 숫자 1씩 증가
+        
+        // "김채율: "을 숫자만큼 반복 생성
+        let text = "";
+        for (let i = 0; i < count; i++) {
+            text += "김채율: ";
+        }
+        
+        // 마지막 글자 뒤의 공백을 제거하고 "님이 입력 중입니다..." 결합
+        document.getElementById("result").innerText = text.trim() + " 님이 입력 중입니다...";
+    }
 </script>
 
 </body>
