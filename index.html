@@ -1,7 +1,87 @@
-# 사용자에게 글자 입력받기
-text = input("글씨를 입력하세요: ")
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글씨 거꾸로 뒤집기 프로그램</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f7fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 { color: #333; margin-bottom: 20px; }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            width: 98%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #0056b3; }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #495057;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
 
-# 글자를 거꾸로 뒤집어서 출력하기
-reversed_text = text[::-1]
+<div class="container">
+    <h2>글씨 뒤집기 🔄</h2>
+    <input type="text" id="inputText" placeholder="뒤집을 글씨를 입력하세요" onkeyup="if(window.event.keyCode==13){reverseText()}">
+    <button onclick="reverseText()">거꾸로 바꾸기</button>
+    <div class="result" id="resultText">결과가 여기에 표시됩니다.</div>
+</div>
 
-print(f"변환된 글자: {reversed_text}")
+<script>
+    function reverseText() {
+        // 1. 입력창에서 글자 가져오기
+        const input = document.getElementById('inputText').value;
+        
+        // 2. 글자 뒤집기 
+        // split('')으로 쪼개고, reverse()로 뒤집고, join('')으로 합칩니다.
+        const reversed = input.split('').reverse().join('');
+        
+        // 3. 결과 화면에 표시하기
+        if(input.trim() === "") {
+            document.getElementById('resultText').innerText = "글자를 입력해주세요!";
+        } else {
+            document.getElementById('resultText').innerText = reversed;
+        }
+    }
+</script>
+
+</body>
+</html>
+
